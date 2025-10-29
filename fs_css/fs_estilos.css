@@ -1,0 +1,187 @@
+/* ===================================
+   Sistema de Diseño - Variables CSS
+   =================================== */
+:root {
+  /* Paleta de colores */
+  --fs-bg: #f8fafc;
+  --fs-card: #ffffff;
+  --fs-text: #111827;
+  --fs-text-secondary: #6b7280;
+  --fs-primary: #2563eb;
+  --fs-primary-dark: #1d4ed8;
+  --fs-success: #16a34a;
+  --fs-success-light: #ecfdf5;
+  --fs-success-border: #a7f3d0;
+  --fs-error: #dc2626;
+  --fs-error-light: #fef2f2;
+  --fs-error-border: #fecaca;
+  --fs-border: rgba(0, 0, 0, 0.08);
+  
+  /* Espaciado consistente */
+  --fs-space-xs: 0.25rem;
+  --fs-space-sm: 0.5rem;
+  --fs-space-md: 1rem;
+  --fs-space-lg: 1.5rem;
+  --fs-space-xl: 2rem;
+  
+  /* Tipografía */
+  --fs-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --fs-font-size-base: 1rem;
+  --fs-line-height: 1.5;
+  
+  /* Bordes y sombras */
+  --fs-radius: 0.5rem;
+  --fs-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --fs-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --fs-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --fs-shadow-hover: 0 6px 18px rgba(0, 0, 0, 0.08);
+  
+  /* Transiciones */
+  --fs-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --fs-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Breakpoints */
+  --fs-breakpoint-sm: 640px;
+  --fs-breakpoint-md: 768px;
+  --fs-breakpoint-lg: 1024px;
+}
+
+/* ===================================
+   Reset básico y estilos base
+   =================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fs-font-family);
+  font-size: var(--fs-font-size-base);
+  line-height: var(--fs-line-height);
+  background-color: var(--fs-bg);
+  color: var(--fs-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================================
+   Navegación
+   =================================== */
+.fs_nav {
+  display: flex;
+  gap: var(--fs-space-md);
+  align-items: center;
+}
+
+.fs_nav_toggle {
+  display: none;
+  padding: var(--fs-space-sm);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--fs-transition-fast);
+}
+
+.fs_nav_toggle:hover {
+  opacity: 0.7;
+}
+
+.fs_nav_toggle:focus-visible {
+  outline: 2px solid var(--fs-primary);
+  outline-offset: 2px;
+  border-radius: var(--fs-radius);
+}
+
+/* Estado abierto del menú móvil */
+.fs_nav.--open {
+  display: flex;
+  flex-direction: column;
+  padding: var(--fs-space-md);
+  background: var(--fs-card);
+  border-radius: var(--fs-radius);
+  box-shadow: var(--fs-shadow-lg);
+}
+
+/* ===================================
+   Botones y elementos interactivos
+   =================================== */
+.fs_btn_opc {
+  transition: 
+    transform var(--fs-transition-fast),
+    box-shadow var(--fs-transition-fast);
+  cursor: pointer;
+  will-change: transform;
+}
+
+.fs_btn_opc:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--fs-shadow-hover);
+}
+
+.fs_btn_opc:active {
+  transform: translateY(0);
+  box-shadow: var(--fs-shadow-sm);
+}
+
+.fs_btn_opc:focus-visible {
+  outline: 2px solid var(--fs-primary);
+  outline-offset: 2px;
+}
+
+/* ===================================
+   Estados y mensajes
+   =================================== */
+.fs_ok {
+  padding: var(--fs-space-md);
+  background-color: var(--fs-success-light);
+  border: 1px solid var(--fs-success-border);
+  border-radius: var(--fs-radius);
+  color: var(--fs-success);
+}
+
+.fs_bad {
+  padding: var(--fs-space-md);
+  background-color: var(--fs-error-light);
+  border: 1px solid var(--fs-error-border);
+  border-radius: var(--fs-radius);
+  color: var(--fs-error);
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+@media (max-width: 768px) {
+  .fs_nav {
+    display: none;
+  }
+  
+  .fs_nav_toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Reducir movimiento para usuarios con preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===================================
+   Modo oscuro (opcional)
+   =================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fs-bg: #0f172a;
+    --fs-card: #1e293b;
+    --fs-text: #f1f5f9;
+    --fs-text-secondary: #94a3b8;
+    --fs-border: rgba(255, 255, 255, 0.1);
+  }
+}
